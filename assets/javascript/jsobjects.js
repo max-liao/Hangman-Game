@@ -82,14 +82,16 @@ var game = {
         }
         
         if (game.display.join("") == game.computerGuess){
-          console.log("YOU WIN!! Starting new game");
+        //   console.log("YOU WIN!! Starting new game");
+          alert("YOU WIN!! Starting new game")
           game.soundcheck();
           game.userscore = game.userscore +1;
           game.computerGuess = game.generateWord();
         }
     
         if (game.guesses == 0){
-          console.log("Out of Guesses!");
+            alert("Out of Guesses! Starting new game")
+        //   console.log("Out of Guesses!");
           game.computerGuess = game.generateWord();
         }
     

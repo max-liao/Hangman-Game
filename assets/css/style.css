@@ -24,8 +24,8 @@
       background-color: black;
       padding:10px;
     }
-
-    img {
+/* 
+    img { */
       /* 
 				Center a block element in the middle of its enclosing tag.
 				When you use the "auto" rule on both left and right margins, 
@@ -33,7 +33,9 @@
 				*/
       /* margin-left: auto;
       margin-right: auto; */
-      float: left;
+      /* float: left; */
       /* Block display (more on this later) */
-      display: block;
-    }
+      /* display: block; */
+      
+      /* margin:auto; */
+    /* } */
