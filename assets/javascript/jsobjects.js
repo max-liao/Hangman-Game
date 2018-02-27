@@ -3,16 +3,17 @@
 alert("Press any key to get started!");
 
 var game = {
-    words: ["roast beef","potato", "chicken","tea and coffee","beer","wine","liquor","orange","pig","cow","sheep", "apple", "carrot", "tomato"],
+    words: ["roast beef","potato", "chicken","tea and coffee","beer","wine liquor","orange","pig cow sheep", "apple", "carrot", "tomato"],
     userscore: 0,
     computerscore: 0,
     guessarray: [],
     display: [],
     computerGuess: [],
     userGuess: [],
+    alphabet: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
     name: "hangman",
     creator: "Max",
-
+    
     generateWord: function() {
         game.computerGuess = game.words[Math.floor(Math.random() * game.words.length)];
         game.display = [];
@@ -23,7 +24,7 @@ var game = {
         for (i = 0; i < game.computerGuess.length; i++)
         {
           if(game.computerGuess[i]==" "){
-            game.display[i] = " ";
+            game.display[i] = "-";
           }
           else{game.display[i] = "_";}
         }
@@ -46,7 +47,7 @@ var game = {
 
     keycheck: function(event) {
         // Alerts the Computer's guess.
-        alert("Hangman Answer: " + game.computerGuess);
+        // alert("Hangman Answer: " + game.computerGuess);
     
         // Determines which key was pressed.
         game.userGuess = event.key;
@@ -55,7 +56,8 @@ var game = {
         alert("User guess: " + game.userGuess);
     
         var repeat = 0;
-    
+        var letter = false;
+
         // If Guess repeated doesn't count
         for (i = 0; i<game.guessarray.length; i++)
         {
@@ -63,23 +65,34 @@ var game = {
             repeat = 1;
           }
         }
-    
+        
+        // If letter
+        for (i= 0; i< game.alphabet.length; i++){
+          if (game.userGuess == game.alphabet[i]){
+            console.log("Letter inputted");
+            letter = true;
+            break;
+          }
+          else {letter = false;}
+        }
+
         // If repeat wrong guess is not pushed to display
         if (repeat == 1) {console.log("Not pushing");}
+        else if (letter == false){console.log("Not a letter");}
         else {
             game.guessarray.push(game.userGuess);
             game.guesses = game.guesses - 1;
         }
-    
-    
+
         // If User guesses correct letter, fill in unsolved phrase
-        for (i = 0; i < game.computerGuess.length; i++)
-        {
-          if (game.userGuess == game.computerGuess[i]){
-            game.display[i] = game.computerGuess[i];
-            console.log(game.display.join(""));
-          }
-        }
+            for (i = 0; i < game.computerGuess.length; i++)
+            {
+              if (game.userGuess == " "){}
+              else if (game.userGuess == game.computerGuess[i]){
+                game.display[i] = game.computerGuess[i];
+                console.log(game.display.join(""));
+              }
+            }
         
         if (game.display.join("") == game.computerGuess){
         //   console.log("YOU WIN!! Starting new game");
@@ -95,7 +108,7 @@ var game = {
           game.computerGuess = game.generateWord();
         }
     
-        gameStatus.innerHTML = "<br><h1>" + game.display.join("") + "</h1>" +
+        gameStatus.innerHTML = "<br><h1>" + game.display.join(" ") + "</h1>" +
         "<p>You chose: " + game.userGuess + "</p>" + 
         "<br><p> Wins: " + game.userscore + "</p>" + 
         "<br><p> Guesses left: " + game.guesses + "</p>" +
@@ -109,5 +122,4 @@ var game = {
 
 game.computerGuess = game.generateWord();
 console.log(game.computerGuess);
-console.log(game.display);
 document.onkeyup = game.keycheck;
