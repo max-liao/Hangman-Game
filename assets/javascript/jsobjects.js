@@ -26,7 +26,7 @@ var game = {
         for (i = 0; i < game.computerGuess.length; i++)
         {
           if(game.computerGuess[i]==" "){
-            game.display[i] = "-";
+            game.display[i] = " ";
           }
           else{game.display[i] = "_";}
         }
@@ -110,7 +110,7 @@ var game = {
           game.computerGuess = game.generateWord();
         }
     
-        gameStatus.innerHTML = "<br><h1>" + game.display.join("\t") + "</h1>" +
+        gameStatus.innerHTML = "<br><h1>" + game.display.join("") + "</h1>" +
         "<p>You chose: " + game.userGuess + "</p>" + 
         "<br><p> Wins: " + game.userscore + "</p>" + 
         "<br><p> Guesses left: " + game.guesses + "</p>" +
