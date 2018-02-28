@@ -1,8 +1,9 @@
 // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-
 alert("Press any key to get started!");
 
 var game = {
+
+    //variables
     words: ["roast beef","potato", "chicken","tea and coffee","beer","wine liquor","orange","pig cow sheep", "apple", "carrot", "tomato"],
     userscore: 0,
     computerscore: 0,
@@ -14,6 +15,7 @@ var game = {
     name: "hangman",
     creator: "Max",
     
+    //functions
     generateWord: function() {
         game.computerGuess = game.words[Math.floor(Math.random() * game.words.length)];
         game.display = [];
@@ -46,6 +48,7 @@ var game = {
     },
 
     keycheck: function(event) {
+
         // Alerts the Computer's guess.
         // alert("Hangman Answer: " + game.computerGuess);
     
@@ -69,7 +72,6 @@ var game = {
         // If letter
         for (i= 0; i< game.alphabet.length; i++){
           if (game.userGuess == game.alphabet[i]){
-            console.log("Letter inputted");
             letter = true;
             break;
           }
@@ -77,7 +79,7 @@ var game = {
         }
 
         // If repeat wrong guess is not pushed to display
-        if (repeat == 1) {console.log("Not pushing");}
+        if (repeat == 1) {console.log("Repeat guess");}
         else if (letter == false){console.log("Not a letter");}
         else {
             game.guessarray.push(game.userGuess);
@@ -108,7 +110,7 @@ var game = {
           game.computerGuess = game.generateWord();
         }
     
-        gameStatus.innerHTML = "<br><h1>" + game.display.join(" ") + "</h1>" +
+        gameStatus.innerHTML = "<br><h1>" + game.display.join("\t") + "</h1>" +
         "<p>You chose: " + game.userGuess + "</p>" + 
         "<br><p> Wins: " + game.userscore + "</p>" + 
         "<br><p> Guesses left: " + game.guesses + "</p>" +
@@ -120,6 +122,10 @@ var game = {
     }
 }
 
+
+// Initialize game
 game.computerGuess = game.generateWord();
 console.log(game.computerGuess);
+
+// Event Listener
 document.onkeyup = game.keycheck;
